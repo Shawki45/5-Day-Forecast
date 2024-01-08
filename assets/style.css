@@ -1,3 +1,7 @@
 h1 {
     font-size: small;
 }
+
+div {
+    justify-content: center;
+}
