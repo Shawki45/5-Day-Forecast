@@ -17,14 +17,16 @@ const getCurrent = async (lat, lon) => {
   console.log("Forecast Data: ", forecastData)
   console.log("Array Data: ", forecastData.list);
   // from my forecast list data
-  for(let i = 0; i < forecastData.list.length; i++) {
-    console.log(forecastData.list[i]);
-    console.log(forecastData.list[i].dt_txt);  // what is the data at this point(?) --> "2024-01-09 12:00:00" STRING primitive datatype
-    // what if we converted A STRING into an ARRAY let tempArr = ["2024-01-09", "12:00:00"] --> tempArr[1]
-    // once we have our stat convereted HOW DO WE FILTER OUT the correct data(?)
-    console.log(typeof forecastData.list[i].dt_txt);  // what is the data at this point(?) 
+  const newForecastList = forecastData.list.filter((day) => day.dt_txt.split(" ")[1] == "21:00:00"); // This returns only new days
+  console.log(newForecastList);
+  // for(let i = 0; i < forecastData.list.length; i++) {
+  //   console.log(forecastData.list[i].dt_txt.split(" ")[1]); // return the time
+  //   //console.log(forecastData.list[i].dt_txt);  // what is the data at this point(?) --> "2024-01-09 12:00:00" STRING primitive datatype
+  //   // what if we converted A STRING into an ARRAY let tempArr = ["2024-01-09", "12:00:00"] --> tempArr[1]
+  //   // once we have our stat convereted HOW DO WE FILTER OUT the correct data(?)
+  //   //console.log(typeof forecastData.list[i].dt_txt);  // what is the data at this point(?) 
 
-  }
+  // }
   
   
   const response = await fetch(
@@ -63,7 +65,7 @@ const getCoords = async (city) => {
   const lon = data[0].lon;
 
   getCurrent(lat, lon);
-  getForecast(lat, lon);
+  // getForecast(lat, lon);
 };
 
 //listen for a click
